@@ -6,7 +6,8 @@
   "scripts": {
     "test": "jest",
     "start": "cd server/ && node server.js",
-    "build": "webpack"
+    "build": "webpack",
+    "build:watch": "webpack --watch"
   },
   "repository": {
     "type": "git",
