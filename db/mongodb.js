@@ -1,7 +1,8 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-undef */
 const faker = require('faker');
 const MongoClient = require('mongodb').MongoClient;
 const url = 'mongodb://localhost:27017/test';
-const db = 'test';
 
 const createReview = function() {
   return {
@@ -28,7 +29,7 @@ MongoClient.connect(url, { useUnifiedTopology: true }, (err, client) => {
   collection.insertMany(reviews, (err, result) => {
     client.close();
   });
-})
+});
 
 
 
