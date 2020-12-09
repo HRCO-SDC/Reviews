@@ -68,7 +68,7 @@ function getCharacteristics(reviewId, callback) {
     } else {
       callback(null, result);
     }
-  })
+  });
 }
 
 function getMetadata(productId, callback) {
