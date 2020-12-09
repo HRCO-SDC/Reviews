@@ -1,4 +1,4 @@
-CREATE TABLE if not exists reviews2 (
+CREATE TABLE if not exists reviews (
   review_id serial PRIMARY KEY,
   rating INTEGER,
   recommend BOOLEAN,
