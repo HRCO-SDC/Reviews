@@ -1,11 +1,13 @@
 import $ from 'jquery';
 
 const Parse = {
-  server: 'http://52.26.193.201:3000/reviews/4',
+  id: 4,
+  server: `http://3.129.86.154/reviews/`,
 
   getAllList: function(successCB, errorCB = null) {
+    console.log(Parse.id);
     $.ajax({
-      url: Parse.server + '/list?count=100&sort=relevant',
+      url: Parse.server + Parse.id + '/list?count=100&sort=relevant',
       type: 'GET',
       contentType: 'application/json',
       data: {},
@@ -17,7 +19,7 @@ const Parse = {
   },
   getAllListHelpfulness: function(successCB, errorCB = null) {
     $.ajax({
-      url: Parse.server + '/list?count=100&sort=helpfulness',
+      url: Parse.server + Parse.id + '/list?count=100&sort=helpfulness',
       type: 'GET',
       contentType: 'application/json',
       data: {},
@@ -29,7 +31,7 @@ const Parse = {
   },
   getAllListNewest: function(successCB, errorCB = null) {
     $.ajax({
-      url: Parse.server + '/list?count=100&sort=newest',
+      url: Parse.server + Parse.id + '/list?count=100&sort=newest',
       type: 'GET',
       contentType: 'application/json',
       data: {},
@@ -41,7 +43,7 @@ const Parse = {
   },
   getProductMeta: function(successCB, errorCB = null) {
     $.ajax({
-      url: Parse.server + '/meta',
+      url: Parse.server + Parse.id + '/meta',
       type: 'GET',
       contentType: 'application/json',
       data: {},
@@ -53,7 +55,7 @@ const Parse = {
   } ,
   markAsHelpful: function(id, successCB, errorCB = null) {
     $.ajax({
-      url: `http://52.26.193.201:3000/reviews/helpful/${id}`,
+      url: `http://3.129.86.154/reviews/helpful/${id}`,
       type: 'PUT',
       contentType: 'application/json',
       data: {},
@@ -77,7 +79,7 @@ const Parse = {
   },
   getAllProductList: function(successCB, errorCB = null) {
     $.ajax({
-      url: 'http://52.26.193.201:3000/products/list?count=20',
+      url: 'http://3.129.86.154/products/list?count=20',
       type: 'GET',
       contentType: 'application/json',
       data: {},
@@ -89,7 +91,7 @@ const Parse = {
   },
   reportReview: function(id, successCB, errorCB = null) {
     $.ajax({
-      url: `http://52.26.193.201:3000/reviews/report/${id}`,
+      url: `http://3.129.86.154/reviews/report/${id}`,
       type: 'PUT',
       contentType: 'application/json',
       data: {},

@@ -1,3 +1,5 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable no-unused-vars */
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Container, Row, Col, Button, DropdownButton, Dropdown } from 'react-bootstrap';
@@ -10,8 +12,8 @@ import Search from './components/Search.jsx';
 
 
 class ReviewApp extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       reviews: [],
       reviewsToShow: [],
@@ -41,6 +43,7 @@ class ReviewApp extends React.Component {
   }
 
   componentDidMount() {
+    Parse.id = this.props.match.params.id || '22';
     Parse.getAllProductList((productList) => {
       this.setState({productList: productList[3].name})
     });
@@ -49,7 +52,6 @@ class ReviewApp extends React.Component {
      ReactDOM.render(<ProductMeta meta={this.state.meta} getStarReviews={this.starhelper}/>, document.getElementById('productMeta'))
      this.getRelevantReviews()
     });
-
   }
 
   getRelevantReviews() {
@@ -102,6 +104,8 @@ class ReviewApp extends React.Component {
   }
 
   getStarReviews() {
+    const id = this.props.match.params.id || '25';
+    Parse.id = id;
     const array = this.state.starFilter
     if(this.state.sortName === 'relevance') {
       Parse.getAllList((data) => {
@@ -119,7 +123,7 @@ class ReviewApp extends React.Component {
         ReactDOM.unmountComponentAtNode(document.getElementById('reviewPannel'))
         ReactDOM.render(<MainReviewPanel reviews={this.state.reviewsToShow} />, document.getElementById('reviewPannel'))
       })
-    } 
+    }
     if(this.state.sortName === 'newest') {
       Parse.getAllListNewest((data) => {
         let reviewArray = data.results;
@@ -136,7 +140,7 @@ class ReviewApp extends React.Component {
         ReactDOM.unmountComponentAtNode(document.getElementById('reviewPannel'))
         ReactDOM.render(<MainReviewPanel reviews={this.state.reviewsToShow} />, document.getElementById('reviewPannel'))
       })
-    } 
+    }
     if(this.state.sortName === 'helpfulness') {
       Parse.getAllListHelpfulness((data) => {
         let reviewArray = data.results;
@@ -157,7 +161,7 @@ class ReviewApp extends React.Component {
   }
 
 
-  handleMoreReviews() { 
+  handleMoreReviews() {
     let moreReviews = this.state.reviews.splice(0, 2);
     if(moreReviews[0] !== undefined) {
       this.state.reviewsToShow.push(moreReviews[0])
@@ -183,7 +187,7 @@ class ReviewApp extends React.Component {
       document.getElementById('reviewForm').scrollIntoView()
     } else {
       ReactDOM.unmountComponentAtNode(document.getElementById('reviewForm'))
-      this.setState({addReview: 0}) 
+      this.setState({addReview: 0})
     }
   }
 
@@ -275,9 +279,9 @@ class ReviewApp extends React.Component {
       showMoreReviews = ''
     } else {
       showMoreReviews = <Button id='reviewButton' onClick={this.handleMoreReviews} >MORE REVIEWS </Button>
-    } 
+    }
 
-    return ( 
+    return (
       <div>
         <br></br>
         <br></br>
@@ -293,8 +297,8 @@ class ReviewApp extends React.Component {
             <Col xl={4}>
               <div id='productMeta'></div>
             </Col>
-            <Col fluid> 
-              <Row id='reviewPannelHeader'> 
+            <Col fluid>
+              <Row id='reviewPannelHeader'>
                 <br></br>
                 <Col id='sortDropdown' fluid>
                   <Row id='sort'>
@@ -313,12 +317,12 @@ class ReviewApp extends React.Component {
                   </Row>
                 </Col>
                 <Col id='starFilter'>
-                  <Row id='starFilter'> 
+                  <Row id='starFilter'>
                     {/* <Search handleSearch={this.handleSearch}/> */}
                   </Row>
                 </Col>
               </Row>
-              <Row id='starFilter'> 
+              <Row id='starFilter'>
                 <p id='clearFilter'>{filterTitle} {clearFiveStar} {clearFourStar} {clearThreeStar}  {clearTwoStar} {clearOneStar} {clearAll}</p>
               </Row>
               <div id='reviewPannel'></div>
@@ -334,7 +338,7 @@ class ReviewApp extends React.Component {
               <br></br>
               <div id='reviewForm'>
               </div>
-              <br></br> 
+              <br></br>
             </Col>
           </Row>
         </Container>

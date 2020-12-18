@@ -6,7 +6,9 @@
   "scripts": {
     "test": "jest",
     "start": "cd server/ && node server.js",
-    "build": "webpack"
+    "server": "cd server/ && nodemon server.js",
+    "build": "webpack",
+    "build:watch": "webpack --watch"
   },
   "repository": {
     "type": "git",
@@ -24,6 +26,7 @@
     "babel-jest": "^26.6.3",
     "body-parser": "^1.19.0",
     "bootstrap": "^4.5.3",
+    "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-jsx-a11y": "^6.4.1",
@@ -31,6 +34,8 @@
     "express": "^4.17.1",
     "jest": "^26.6.3",
     "jquery": "^3.5.1",
+    "nodemon": "^2.0.6",
+    "path": "^0.12.7",
     "pg": "^8.5.1",
     "react-bootstrap": "^1.4.0",
     "react-bootstrap-star-rating": "^3.5.5-alpha.0.3",
@@ -39,6 +44,7 @@
     "react-icons": "^3.11.0",
     "react-image-lightbox": "^5.1.1",
     "react-images-upload": "^1.2.8",
+    "react-router-dom": "^5.2.0",
     "react-star-rating": "^1.4.2",
     "react-star-rating-input": "^8.0.1",
     "react-star-ratings": "^2.3.0",
